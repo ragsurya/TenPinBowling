@@ -10601,87 +10601,45 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__style_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__style_css__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_input_range__ = __webpack_require__(197);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_input_range___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_react_input_range__);
-var _this = this;
-
 
 
 
 __webpack_require__(86);
-//import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
 
 
 
-class Score extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {}
-
-const CustomInput = props => {
-    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_react_input_range___default.a, { maxValue: 10, minValue: 1, value: _this.state.value,
-        onChange: value => _this.setState({ value }) });
-};
-
-class Bowl extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            value: { min: 1, max: 10 }
-
-        };
-        //   state ={
-        //       //increase the frameposition only if its a strike 
-        //       // may be check box? if(isStrike )
-        //       {
-        //           propsframePosition.setState (props.framePosition + 1);
-        //       }
-        //       else if(spare){
-        //         props.framePosition.setState (props.framePosition + 1);
-        //       }
-        //       else{
-        //           //update the score
-        //       }
-        //   }
-        //     <form onSubmit=
-        // }
-    }
-    render() {
-        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'form',
-            null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                CustomInput,
-                { type: 'text', className: 'form-control', placeholder: 'Enter the number of pins hit' },
-                ' '
-            ),
-            '//  ',
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', null),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'button',
-                { className: 'btn btn-success', type: 'submit' },
-                'Bowl..'
-            )
-        );
-    }
-}
-
-const Frames = props => {
-
-    let frames = [];
+const NumberOfPinsHit = props => {
 
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'div',
-        { className: 'container' },
+        null,
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'div',
-            null,
-            props.formMessage.message,
-            ' '
-        ),
-        Frames.list.map((number, i) => __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            { className: 'text-center' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                null,
+                props.arrayOfPinCountHit.map((number, i) => __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'span',
+                    { className: 'pinsHit', key: i, onClick: () => props.setFramePosition(number) },
+                    number
+                ))
+            )
+        )
+    );
+};
+
+const Frames = props => {
+    let frames = [];
+    let scoreUnderFrames = [];
+
+    {
+        Frames.list.map((number, i) => frames.push(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'div',
             { disabled: i + 1 === props.formMessage.activeFrame, key: i, className: 'col-6 parentDiveFrame' },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
                 { className: 'circle' },
-                'Chance: ',
                 i + 1
             ),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -10693,38 +10651,47 @@ const Frames = props => {
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'span',
                         null,
-                        '/'
+                        props.scoresInEachFrame != undefined && props.scoresInEachFrame.length && props.scoresInEachFrame[i] != undefined ? props.scoresInEachFrame[i].isAllStrike ? 'X' : 5 : ''
                     )
                 ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'div',
-                    { className: 'innerFrames col-2' },
-                    '8'
-                )
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'innerFrames col-2' })
             )
-        )),
+        )));
+    };
+    {
+        props.scoreUnderEachFrame.map((number, i) => scoreUnderFrames.push(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            { key: i, className: 'scoreField col-6' },
+            'Score: ',
+            number.score
+        )));
+    };
+
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'div',
+        null,
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'div',
-            { className: 'col-6 parentDiveFrame' },
+            { className: 'container' },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
-                { className: 'circle' },
-                'TOTAL SCORE'
+                null,
+                props.formMessage.message,
+                ' '
             ),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'div',
-                { key: '11', className: 'outerFrame col-6' },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'div',
-                    { className: 'innerFrames col-2' },
-                    '8'
-                )
-            )
+            frames
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            { className: 'scoreFieldParent' },
+            scoreUnderFrames
         )
     );
 };
 
 Frames.list = __WEBPACK_IMPORTED_MODULE_2_lodash___default.a.range(0, 10);
+Frames.StrikePositionList = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19];
+Frames.ScoresInEachFrame = [];
 
 class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
     constructor() {
@@ -10733,29 +10700,161 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
             formParams: {
                 totalFrames: "10",
                 maxNumOfPlayers: "1",
-                message: "This bowling score app is developed using React Js",
-                activeFrame: "1"
+                message: "This bowling score app is developed using React Js"
             },
-            framePosition: 0
+            framePosition: 1,
+            selectedNumber: 10,
+            isAllStrike: true,
+            previousHit: '',
+            sumOfPairInAFrame: 0,
+            arrayOfPinCountHit: __WEBPACK_IMPORTED_MODULE_2_lodash___default.a.range(0, 11),
+            ScoresInEachFrame: [],
+            chancesPlayed: 1,
+            scoreUnderEachFrame: [{ 'id': 1, 'score': 0, 'hitStatus': '' }, { 'id': 2, 'score': 0, 'hitStatus': '' }, { 'id': 3, 'score': 0, 'hitStatus': '' }, { 'id': 4, 'score': 0, 'hitStatus': '' }, { 'id': 5, 'score': 0, 'hitStatus': '' }, { 'id': 6, 'score': 0, 'hitStatus': '' }, { 'id': 7, 'score': 0, 'hitStatus': '' }, { 'id': 8, 'score': 0, 'hitStatus': '' }, { 'id': 9, 'score': 0, 'hitStatus': '' }, { 'id': 10, 'score': 0, 'hitStatus': '' }]
+        };
+        this.setFramePosition = clickedNumber => {
 
+            let nextFramePosition = 0;
+            if (Frames.StrikePositionList.includes(this.state.framePosition)) {
+                //if the frame position is in a member of the Strike Position List array and number returned is 10 then its a strike
+                if (clickedNumber === 10) {
+                    this.state.ScoresInEachFrame.push({ 'framePos': this.state.framePosition, 'strikeStatus': 'strike', 'isAllStrike': this.state.isAllStrike, 'clickedNumber': clickedNumber, chancesPlayed: this.state.ScoresInEachFrame.length + 1,
+                        'pinsHit': clickedNumber, 'isScored': false });
+                    this.state.ScoresInEachFrame.push({ 'framePos': this.state.framePosition, 'strikeStatus': 'parentStrike', 'isAllStrike': this.state.isAllStrike, 'clickedNumber': clickedNumber,
+                        chancesPlayed: this.state.ScoresInEachFrame.length + 1,
+                        'pinsHit': 0, 'isScored': false });
+
+                    nextFramePosition = this.state.framePosition + 2;
+                    this.setState({
+                        sumOfPairInAFrame: 0 }, function () {
+                        console.log('sumOfPairInAFrame : ' + this.state.sumOfPairInAFrame);
+                    });
+                    this.setState({
+                        arrayOfPinCountHit: this.state.framePosition == 19 ? [] : this.state.arrayOfPinCountHit }, function () {
+                        console.log('sumOfPairInAFrame : ' + this.state.sumOfPairInAFrame);
+                    });
+                    this.setFrameScore('strike', clickedNumber);
+                } else {
+                    this.state.ScoresInEachFrame.push({ 'framePos': this.state.framePosition,
+                        'strikeStatus': 'none',
+                        'isAllStrike': false,
+                        'clickedNumber': clickedNumber,
+                        'chancesPlayed': this.state.ScoresInEachFrame.length + 1,
+                        'pinsHit': clickedNumber,
+                        'isScored': false });
+
+                    //increase the score
+                    nextFramePosition = this.state.framePosition + 1;
+                    this.setState({
+                        sumOfPairInAFrame: clickedNumber }, function () {
+                        console.log('sumOfPairInAFrame : ' + this.state.sumOfPairInAFrame);
+                    });
+                    this.setState({
+                        arrayOfPinCountHit: __WEBPACK_IMPORTED_MODULE_2_lodash___default.a.range(0, 11 - clickedNumber) }, function () {
+                        console.log('sumOfPairInAFrame : ' + this.state.sumOfPairInAFrame);
+                    });
+                }
+            } else {
+                nextFramePosition = this.state.framePosition + 1;
+                this.setState({
+                    sumOfPairInAFrame: clickedNumber != 10 ? this.state.sumOfPairInAFrame + clickedNumber : 0 }, function () {
+                    console.log('sumOfPairInAFrame : ' + this.state.sumOfPairInAFrame);
+                    clickedNumber = 0;
+                });
+                this.setState({
+                    arrayOfPinCountHit: __WEBPACK_IMPORTED_MODULE_2_lodash___default.a.range(0, 11) }, function () {
+                    console.log('sumOfPairInAFrame : ' + this.state.sumOfPairInAFrame);
+                });
+
+                this.state.ScoresInEachFrame.push({ 'framePos': this.state.framePosition,
+                    'strikeStatus': this.state.sumOfPairInAFrame + clickedNumber === 10 ? 'spare' : 'none',
+                    'isAllStrike': false,
+                    'clickedNumber': clickedNumber,
+                    'chancesPlayed': this.state.ScoresInEachFrame.length + 1,
+                    'pinsHit': clickedNumber,
+                    'isScored': false });
+                this.setFrameScore('', clickedNumber);
+                //goes here
+            }
+
+            this.setState({
+                framePosition: nextFramePosition
+
+            }, function () {
+                console.log('Next Frame Position : ' + this.state.framePosition);
+            });
+
+            this.setState({
+                ScoresInEachFrame: this.state.ScoresInEachFrame }, function () {
+                console.log(this.state.ScoresInEachFrame);
+            });
+            this.setState({
+                chancesPlayed: this.state.ScoresInEachFrame.length
+            }, function () {
+                console.log('Current  Chance : ' + this.state.chancesPlayed);
+            });
+        };
+        this.setFrameScore = (hitStatus, clickedNumber) => {
+            var peeps = this.state.scoreUnderEachFrame;
+            var index = __WEBPACK_IMPORTED_MODULE_2_lodash___default.a.findIndex(peeps, { id: this.state.ScoresInEachFrame.length / 2 });
+            if (hitStatus != 'strike') {
+                if (this.state.sumOfPairInAFrame + clickedNumber === 10) {
+                    peeps[index].score = '';
+                } else {
+                    peeps[index].score = this.state.sumOfPairInAFrame + clickedNumber;
+                }
+                if (peeps[index - 1] != undefined && peeps[index - 1].score == '') {
+
+                    peeps[index - 1].score = 10 + (peeps[index - 1].hitStatus == 'strike' ? this.state.sumOfPairInAFrame + clickedNumber : this.state.sumOfPairInAFrame);
+                }
+                if (peeps[index - 2] != undefined && (peeps[index - 2].score == 0 || peeps[index - 2].score == '')) {
+                    peeps[index - 2].score = 10 + this.state.sumOfPairInAFrame + clickedNumber;
+                }
+            } else {
+                peeps[index].hitStatus = 'strike';
+                if (peeps[index - 2] != undefined && (peeps[index - 2].score == '' || peeps[index - 2].score == 0)) {
+                    peeps[index - 2] = 30;
+                }
+            }
+
+            this.setState({ scoreUnderEachFrame: peeps });
         };
     }
-    render() {
 
+    render() {
         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'div',
             null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Frames, { formMessage: this.state.formParams }),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Frames, { formMessage: this.state.formParams,
+                selectedNumber: this.state.selectedNumber,
+                framePosition: this.state.framePosition,
+                scoreUnderEachFrame: this.state.scoreUnderEachFrame }),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                { className: 'col-6 parentDiveFrame totalScoreFrame' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'div',
+                    { key: '11', className: 'outerFrame col-6' },
+                    'Total Score: 123'
+                )
+            ),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
                 { className: 'bowlOption col-6' },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Bowl, { framePosition: this.state.framePosition })
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(NumberOfPinsHit, {
+                    framePosition: this.state.framePosition,
+                    selectedNumber: this.state.selectedNumber,
+                    setFramePosition: this.setFramePosition,
+                    arrayOfPinCountHit: this.state.arrayOfPinCountHit,
+                    scoresInEachFrame: this.state.ScoresInEachFrame,
+                    chancesPlayed: this.state.chancesPlayed,
+                    isAllStrike: this.state.isAllStrike })
             )
         );
     }
 };
 
-Object(__WEBPACK_IMPORTED_MODULE_1_react_dom__["render"])(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(App, { message: 'This is my first React ' }), document.getElementById('app'));
+Object(__WEBPACK_IMPORTED_MODULE_1_react_dom__["render"])(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(App, { message: 'This is my first React component' }), document.getElementById('app'));
 
 /***/ }),
 /* 90 */
@@ -40019,7 +40118,7 @@ exports = module.exports = __webpack_require__(194)(undefined);
 
 
 // module
-exports.push([module.i, "    \n    body{\n        background: #ccc;\n        color: #fff\n    }\n    .outerFrame {\n        width:100px;\n        height: 52px;\n        border-radius: 5px;\n        border : 1px solid #A41156;\n        margin: 2px;\n        float: left;\n        background: #A41156 ;\n    \n   \n    }\n    span{\n        float: left;\n       \n    }\n    .parentDiveFrame{\n        height: 120px;\n        width: 90px;\n        float: left;\n        margin: 1%;\n    }\n    .innerFrames { \n        padding: 2px;\n        border: 1px solid #AC3B70;\n        width: 40px;\n        height: 40px;\n        float: left;\n        margin: 4px;\n    }\n\n    div#app{\n        margin-top:15%\n    }\n    .circle{\n        width:100px;\n        height: 22px;\n        background: #B5074B;\n        -moz-border-radius:15px;\n        -webkit-border-radius:15px;\n        border-radius:15px;\n        text-align: center;\n        font-size:12pt;\n       \n     float: left;\n        z-index: 10;\n    }\n    .bowlOption{\n        margin-left:11%\n    }\n    .bowlOption input{\n        max-width:200px;\n        float: left;\n    }", ""]);
+exports.push([module.i, "    \n    body{\n        background: #ccc;\n        color: #fff;\n    \n    }\n    .outerFrame {\n        width:100px;\n        height: 76px;\n        border-radius: 5px;\n        border : 1px solid #CEAC0D;\n        margin: 2px;\n        float: left;\n        color: #000;\n        background: #D5CE57 ;\n    \n   \n    }\n    span{\n        float: left;\n       \n    }\n    .parentDiveFrame{\n        height: 120px;\n        width: 90px;\n        float: left;\n        margin: 9px;\n    }\n    .innerFrames { \n        padding: 2px;\n        border: 1px solid #0B0D07;\n        width: 40px;\n        height: 40px;\n        float: left;\n        margin: 4px;\n    }\n    .scoreField { \n        padding: 2px;\n        width: 100px;\n        height: 40px;\n        float: left;\n        margin: 8px 4px 0 0px;\n        font-size: 14pt;\n        color:#E60505;\n    }\n    .scoreFieldParent{\n        margin-left:11%;\n    }\n\n    div#app{\n        margin-top:15%\n    }\n    .circle{\n        width: 38px;\n        height: 38px;\n        background: #383725;\n        -moz-border-radius: 15px;\n        -webkit-border-radius: 15px;\n        border-radius: 19px;\n        text-align: center;\n        font-size: 12pt;\n        color: #fff;\n        margin: 3px;\n        margin: 3px 0 15px 36px;\n        float: left;\n        z-index: 10;\n        line-height: 2.3em;\n    }\n    .bowlOption{\n        margin:6% 0 0% 16%;\n    }\n    .bowlOption input{\n        max-width:200px;\n        float: left;\n    }\n    .pinsHit{\n        width: 68px;\n        height: 68px;\n        background: #1DCE09;\n        -moz-border-radius: 50px;\n        -webkit-border-radius: 50px;\n        border-radius: 34px;\n        text-align: center;\n        font-size: 14pt;\n        margin: 5px;\n        line-height: 4em;\n        cursor: pointer;\n    }\n    .totalScoreFrame{\n        float: right;\n        margin-right: 4%;\n    }", ""]);
 
 // exports
 
