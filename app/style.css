@@ -28,12 +28,24 @@
     }
     .innerFrames { 
         padding: 2px;
-        border: 1px solid #0B0D07;
-        width: 40px;
-        height: 40px;
+        /* border: 1px solid #0B0D07; */
+        
         float: left;
-        margin: 4px;
+        /* margin: 24px -10px 85px 20px;
+        margin-top: -109px; */
+        line-height: 3em;
+        text-align: center;
+        font-size: 16pt;
     }
+    .nextFrame
+    {
+        margin-left: 3%;
+        width:50px
+    } 
+    .sameFrame{
+        margin-left: 0%;
+        width:85px
+    } 
     .scoreField { 
         padding: 2px;
         width: 100px;
@@ -44,11 +56,11 @@
         color:#E60505;
     }
     .scoreFieldParent{
-        margin-left:11%;
+        margin-left:2%;
     }
 
     div#app{
-        margin-top:15%
+        margin-top:5%
     }
     .circle{
         width: 38px;
@@ -89,4 +101,13 @@
     .totalScoreFrame{
         float: right;
         margin-right: 4%;
+        font-size:18pt;
+        margin: 8% 2% 0 2%;
+        color: #070210
+    }
+    .pinsHitInEachFrame{
+
+    }
+    .roll{
+        margin-top: 31%
     }
