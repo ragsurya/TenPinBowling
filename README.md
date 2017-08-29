@@ -38,6 +38,12 @@ To make the app run on your local, simply clone it on to your mac and
 * type npm run start. 
 * this will initiate a port 8080 and the app will listen on this port. The app can be accesed on a browser by navigating to http://localhost:8080
 
+The app will look like this
+
+<img width="1212" alt="app" src="https://user-images.githubusercontent.com/17691926/29800991-187493c8-8c65-11e7-9fd6-42e2848f9c0c.png">
+
+
+
 All the scenarios given in the word doc are tested along with many other scenarios. 
 
 
