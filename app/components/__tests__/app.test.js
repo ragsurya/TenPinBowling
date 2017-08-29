@@ -97,8 +97,8 @@ describe('<NumberOfPinsHit />: when a player hits 9 pins in first attempt, and t
     });
 })
 
-describe('<NumberOfPinsHit />: when a player hits 9 pins in first attempt, and then he hits 1 in next, it should be a spare, he should have remaining 10 pins reset to be hit in the next frame', () => {
-    it('verifies when a player hits 9 pins in first attempt, and then he hits 1 in next, it should be a spare, he should have remaining 10 pins reset to be hit in the next frame', () => {
+describe('<NumberOfPinsHit />: when a player hits 6 pins in first attempt, and then he hits 1 in next, the total score must be 7', () => {
+    it('when a player hits 6 pins in first attempt, and then he hits 1 in next, the total score must be 7', () => {
        
         //var app = shallow(<App />);
         const component = mount(<NumberOfPinsHit />);
@@ -175,5 +175,28 @@ describe('<NumberOfPinsHit />: when a player hits 2 pins in first 10 attempts (f
         
         expect(component.state().TotalScore).toEqual(36);
        // expect(component.state('totalScore')).toEqual(300);
+    });
+})
+
+describe('<NumberOfPinsHit />: when a player hits 3 pins all his 10 frames then score shouled be 30', () => {
+    it(' when a player hits 3 pins all his 10 frames then score shouled be 30', () => {
+       
+        //var app = shallow(<App />);
+        const component = mount(<NumberOfPinsHit />);
+        component.state().framePosition=1;
+        component.state().arrayOfPinCountHit = _.range(0,11); 
+        component.state().scoresInEachFrame = []; 
+        component.state().chancesPlayed = 0;
+        component.state().isAllStrike = false;
+
+        for (let i=0; i<10; i++)
+            {
+                var span = {i} + 'span';
+                const  span= component.find('span').at(3);
+                span.simulate('click');
+            }
+        
+        expect(component.state().TotalScore).toEqual(30);
+      
     });
 })
