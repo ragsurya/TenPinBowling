@@ -271,7 +271,7 @@ if(hitStatus != 'strike')
                     {
                     if(frameScore[index-1].hitStatus === 'spare')
                     {
-                        frameScore[index-1].score = (frameScore[index-1].score === '' || frameScore[index-2].score === '-' && !this.state.isAllStrike)  ? 20 : frameScore[index-1].score;
+                        frameScore[index-1].score = (frameScore[index-1].score === '' || frameScore[index-1].score === '-')  ? 20 : frameScore[index-1].score;
                     }
                     
                 }
@@ -298,7 +298,9 @@ if(hitStatus != 'strike')
             }
         
     });
-    this.setState({TotalScore: finalScore});
+    this.setState({TotalScore: finalScore}, function(){
+        console.log('TotalScore: ' +  finalScore);
+    });
 }
 
 this.setFrameScoreForSpare = (clickedNumber) => {
@@ -338,7 +340,6 @@ this.setFrameScoreForPenultimateStrike = (frameScore, index, clickedNumber) =>
      return (
         <div className ="container">
         <Frames formMessage = {this.state.formParams}
-         selectedNumber= {this.state.selectedNumber}
           framePosition = {this.state.framePosition} 
           scoreUnderEachFrame = {this.state.scoreUnderEachFrame}
           scoresInEachFrame = { this.state.ScoresInEachFrame }  />
@@ -351,7 +352,7 @@ this.setFrameScoreForPenultimateStrike = (frameScore, index, clickedNumber) =>
         <div className=" col-6" >
         <NumberOfPinsHit 
             framePosition={this.state.framePosition} 
-            selectedNumber= {this.state.selectedNumber}
+            totalScore ={this.state.TotalScore}
             setFramePosition={this.setFramePosition}
             arrayOfPinCountHit = {this.state.arrayOfPinCountHit} 
             scoresInEachFrame = { this.state.ScoresInEachFrame } 
@@ -366,4 +367,8 @@ this.setFrameScoreForPenultimateStrike = (frameScore, index, clickedNumber) =>
     }
 };
 
-render(<App message="This is my first React component"/>, document.getElementById('app'));
+
+
+render(<App message="This is my first React component"/>, document.getElementById('app') || document.createElement('div'));
+module.exports = App;
+
