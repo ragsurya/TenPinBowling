@@ -174,14 +174,13 @@ describe('<NumberOfPinsHit />: when a player hits 2 pins in first 10 attempts (f
         span14.simulate('click');
         
         expect(component.state().TotalScore).toEqual(36);
-       // expect(component.state('totalScore')).toEqual(300);
+      
     });
 })
 
 describe('<NumberOfPinsHit />: when a player hits 3 pins all his 10 frames then score shouled be 30', () => {
     it(' when a player hits 3 pins all his 10 frames then score shouled be 30', () => {
-       
-        //var app = shallow(<App />);
+    
         const component = mount(<NumberOfPinsHit />);
         component.state().framePosition=1;
         component.state().arrayOfPinCountHit = _.range(0,11); 

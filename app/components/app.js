@@ -9,33 +9,39 @@ import {calculateFrameScore} from './app.calculateFrameScore'
 
 const NumberOfPinsHit = (props) => {
    
-    let pinsHitInEachChance = [];
-{props.scoresInEachFrame.map((number, i) => 
-    pinsHitInEachChance.push(
-     <span key={i} className={(i + 1) % 2 == 0 ? 'innerFrames sameFrame' : 'innerFrames nextFrame' } >
-     {number.pinsHit}
-      </span>
-     ))
-};     
+    
     return (
         <div>
+        
         <div className="roll text-center">
         <div>
         {props.arrayOfPinCountHit.map((number,i) =>
         <span className="pinsHit" key={i}  onClick= {() => props.setFramePosition(number)}>{number}</span>
     )}
         </div>
+       
         </div>
+        
+        
         </div>
     );
 };
 
 const Frames = (props) =>  {
+    
     let frames = [];
    let scoreUnderFrames = [];
    let currFrameScore = 0;
    let nextFrameScore = 0;
    let index = props.scoresInEachFrame.length -1;
+   let pinsHitInEachChance = [];
+   {props.scoresInEachFrame.map((number, i) => 
+       pinsHitInEachChance.push(
+        <span key={i} className={(i + 1) % 2 == 0 ? 'innerFrames sameFrame' : 'innerFrames nextFrame' } >
+        {number.pinsHit}
+         </span>
+        ))
+   };     
    if(props.scoresInEachFrame[props.scoresInEachFrame.length -1] != undefined)
     {
         index = props.scoresInEachFrame.length -1;
@@ -71,9 +77,11 @@ const Frames = (props) =>  {
             {frames}
            
             </div>
+            <div>{pinsHitInEachChance}</div>
              <div className="scoreFieldParent">
         {scoreUnderFrames}
         </div>
+
         </div>
            
         );
