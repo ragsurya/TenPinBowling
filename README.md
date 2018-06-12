@@ -38,3 +38,13 @@ To make the app run on your local, simply clone it on to your mac and
 ## CI/CD Process
 
 Jenkins docker image is used as CI pipeline for this app
+```
+docker run \
+  --rm \
+  -u root \
+  -p 8080:8080 \
+  -v jenkins-data:/var/jenkins_home \ 
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  -v "$HOME":/home \ 
+  jenkinsci/blueocean
+  ```
