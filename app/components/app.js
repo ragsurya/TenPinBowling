@@ -3,7 +3,6 @@ import {render} from 'react-dom';
 import _ from 'lodash'
 require("../style.css");
 import css from '../style.css';
-import InputRange from 'react-input-range';
 import {utils} from './app.utils'
 import {calculateFrameScore} from './app.calculateFrameScore'
 

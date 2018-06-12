@@ -26892,10 +26892,6 @@ var _style = __webpack_require__(82);
 
 var _style2 = _interopRequireDefault(_style);
 
-var _reactInputRange = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"react-input-range\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
-
-var _reactInputRange2 = _interopRequireDefault(_reactInputRange);
-
 var _app = __webpack_require__(193);
 
 var _app2 = __webpack_require__(194);
