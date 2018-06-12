@@ -1,7 +1,7 @@
 # TenPinBowling
 This app is created in React Js using React components.  This app is the primary approach to writing a program for a scoring a game of Ten Pin Bowling. This app is event based and interacts with the Player
 
-Curretly I have built it as per the requirements, it supports one player and scores based on the pins hit in the allocated chances.
+Curretly it supports one player and scores based on the pins hit in the allocated chances.
 
 _**How it works:**_
 1. A frame consists of 2 chances
@@ -25,11 +25,7 @@ _**This app properly :**_
 ## Unit testing (TDD)
 
 The unit testing is done using Jest and Enzyme. All the node modules necessary for this testing framework have been included in the package.json
-I have used both shallow and mount features of enzyme to unit test the code
-
-# **Project Setup in a Mac**
-
-The code is committed into this repository from my macbook including node_modules required. the node_modules are a bit larger and could have been installed globally instead of adding them to the repo (I will correct this next time :)). 
+both shallow and mount features of enzyme are used to unit test the code
 
 To make the app run on your local, simply clone it on to your mac and
 * open a terminal and navigate to the app's physical directory
@@ -38,17 +34,17 @@ To make the app run on your local, simply clone it on to your mac and
 * type npm run start. 
 * this will initiate a port 8080 and the app will listen on this port. The app can be accesed on a browser by navigating to http://localhost:8080
 
-The app will look like this when it loads
 
-<img width="1290" alt="initialload" src="https://user-images.githubusercontent.com/17691926/29818636-335f2d24-8cb5-11e7-8b30-e1887aa76b07.png">
+## CI/CD Process
 
-Sample hit with All spares (5 hits in each chance) and the one bonus chance hitting 5 pins
-<img width="1245" alt="allspare" src="https://user-images.githubusercontent.com/17691926/29818552-bd3d0b66-8cb4-11e7-8cff-8fd3cabafe70.png">
-
-
-
-
-
-All the scenarios given in the word doc are tested along with many other scenarios. 
-
-
+Jenkins docker image is used as CI pipeline for this app
+```
+docker run \
+  --rm \
+  -u root \
+  -p 8080:8080 \
+  -v jenkins-data:/var/jenkins_home \ 
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  -v "$HOME":/home \ 
+  jenkinsci/blueocean
+  ```
