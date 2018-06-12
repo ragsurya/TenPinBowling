@@ -21,12 +21,12 @@ export const utils = (App, clickedNumber) => {
                          nextFramePosition = App.state.framePosition + 2;
                         App.setState({
                             sumOfPairInAFrame:  0,}, function () {
-                                console.log('sumOfPairInAFrame : ' + App.state.sumOfPairInAFrame)});
+                                });
                                 App.setState({
                                             arrayOfPinCountHit:  
                                             App.state.isAllStrike ?( App.state.framePosition == 21 && App.state.scoreUnderEachFrame==23 ? [] : App.state.arrayOfPinCountHit)
                                         : (App.state.framePosition == 21 ? [] : App.state.arrayOfPinCountHit)}, function () {
-                                                console.log('sumOfPairInAFrame : ' + App.state.sumOfPairInAFrame)});
+                                               });
                                                 App.setFrameScore('strike', clickedNumber);
                             
                      }
@@ -48,10 +48,10 @@ export const utils = (App, clickedNumber) => {
                          nextFramePosition = App.state.framePosition + 1;
                          App.setState({
                             sumOfPairInAFrame: clickedNumber,}, function () {
-                                console.log('sumOfPairInAFrame : ' + App.state.sumOfPairInAFrame)});
+                                });
                                 App.setState({
                                  arrayOfPinCountHit:  _.range(0, 11-clickedNumber),}, function () {
-                                console.log('sumOfPairInAFrame : ' + App.state.sumOfPairInAFrame)});
+                                });
                                 App.setFrameScoreForSpare(clickedNumber);
                             
                                                                 
@@ -61,12 +61,12 @@ export const utils = (App, clickedNumber) => {
                 nextFramePosition = App.state.framePosition + 1;
              App.setState({
                 sumOfPairInAFrame: clickedNumber != 10 ? App.state.sumOfPairInAFrame + clickedNumber : 0,}, function () {
-                    console.log('sumOfPairInAFrame : ' +App.state.sumOfPairInAFrame);
+                    
                     clickedNumber = 0;
                 });
                                     App.setState({
                                         arrayOfPinCountHit:  (App.state.scoreUnderEachFrame.length == 11 ) ? [] : _.range(0, 11),}, function () {
-                                            console.log('sumOfPairInAFrame : ' + App.state.sumOfPairInAFrame)});
+                                            });
                                             
                                             App.state.ScoresInEachFrame.push({'framePos':App.state.framePosition,
                                              'strikeStatus': App.state.sumOfPairInAFrame + clickedNumber === 10 ? 'spare' : 'none', 
@@ -84,15 +84,15 @@ export const utils = (App, clickedNumber) => {
                 framePosition: nextFramePosition
                 
             }, function () {
-                console.log('Next Frame Position : ' +App.state.framePosition)});
+                });
                
                 App.setState({
                     ScoresInEachFrame: App.state.ScoresInEachFrame,}, function (){
-                        console.log(App.state.ScoresInEachFrame)});
+                        });
                         App.setState({
                             chancesPlayed : App.state.ScoresInEachFrame.length
                         }, function () {
-                            console.log('Current  Chance : ' + App.state.chancesPlayed )});
+                          });
                
                 
         

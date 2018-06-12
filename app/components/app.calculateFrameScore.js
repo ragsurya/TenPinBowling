@@ -83,7 +83,6 @@ if(hitStatus != 'strike')
 
     App.setState({scoreUnderEachFrame: frameScore});
     let finalScore = 0;
-    console.log('scoreUnderEachFrameArray: ' + App.state.scoreUnderEachFrame);
     App.state.scoreUnderEachFrame.map(function(item){
         if(item.id <= 10)
             {
@@ -92,6 +91,5 @@ if(hitStatus != 'strike')
         
     });
     App.setState({TotalScore: finalScore}, function(){
-        console.log('TotalScore: ' +  finalScore);
     });
 }

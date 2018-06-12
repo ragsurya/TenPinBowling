@@ -3,14 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "build": "webpack",
-    "start": "webpack-dev-server",
-    "test": "jest"
-  },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cross-env": "^5.1.6",
     "enzyme": "^2.9.1",
     "jest": "^20.0.4",
     "react": "^15.6.1",
@@ -33,26 +29,16 @@
     "html-webpack-plugin": "^2.30.1",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^20.0.4",
-    "jest-cli": "^15.1.0",
+    "jest-cli": "^21.2.1",
     "regenerator-runtime": "^0.11.0",
     "style-loader": "^0.18.2",
     "url-loader": "^0.5.9",
     "webpack": "^3.5.5",
     "webpack-dev-server": "^2.7.1"
   },
-  "jest": {
-    "moduleFileExtensions": [
-      "js",
-      "jsx"
-    ],
-    "moduleDirectories": [
-      "/node_modules"
-    ],
-    "transformIgnorePatterns": [
-      "/node_modules/jest-runtime/"
-    ],
-    "moduleNameMapper": {
-      "\\.(css|less)$": "identity-obj-proxy"
-    }
+  "scripts": {
+    "build": "webpack",
+    "start": "webpack-dev-server",
+    "test": "cross-env CONFIG_ENV=development node scripts/test.js --config .jestrc.json --env=jsdom --colors"
   }
 }
