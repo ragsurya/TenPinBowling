@@ -35,4 +35,6 @@ To make the app run on your local, simply clone it on to your mac and
 * this will initiate a port 8080 and the app will listen on this port. The app can be accesed on a browser by navigating to http://localhost:8080
 
 
+## CI/CD Process
 
+Jenkins docker image is used as CI pipeline for this app
